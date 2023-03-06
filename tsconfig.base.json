@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ngrecipes-nx/recipes/feature-author-details": [
+        "libs/recipes/feature-author-details/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-navbar": [
+        "libs/recipes/feature-navbar/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

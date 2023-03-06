@@ -1,0 +1,15 @@
+figcaption {
+  width: 100%;
+  text-align: center;
+}
+img {
+  width: 400px;
+  margin: 20px 20px 0 20px;
+  border-radius: 30px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
