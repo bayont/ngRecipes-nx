@@ -1,2 +1,2 @@
 export * from './lib/recipes-feature-author-details.module';
-export { DialogService } from './lib/dialog/dialog.service';
+export { AuthorDetailsDialogService } from './lib/author-details-dialog/author-details-dialog.service';

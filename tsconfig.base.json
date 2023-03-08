@@ -14,12 +14,43 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "types": ["node"],
     "paths": {
+      "@ngrecipes-nx/recipes/data-access-recipes": [
+        "libs/recipes/data-access-recipes/src/index.ts"
+      ],
       "@ngrecipes-nx/recipes/feature-author-details": [
         "libs/recipes/feature-author-details/src/index.ts"
       ],
+      "@ngrecipes-nx/recipes/feature-confirm-delete-dialog": [
+        "libs/recipes/feature-confirm-delete-dialog/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-format-time": [
+        "libs/recipes/feature-format-time/src/index.ts"
+      ],
       "@ngrecipes-nx/recipes/feature-navbar": [
         "libs/recipes/feature-navbar/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-recipes-edit": [
+        "libs/recipes/feature-recipes-edit/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-recipes-list": [
+        "libs/recipes/feature-recipes-list/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-recipes-search": [
+        "libs/recipes/feature-recipes-search/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-recipes-view-item": [
+        "libs/recipes/feature-recipes-view-item/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-shell": [
+        "libs/recipes/feature-shell/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/ui-default-view": [
+        "libs/recipes/ui-default-view/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/ui-recipes-list-item": [
+        "libs/recipes/ui-recipes-list-item/src/index.ts"
       ]
     }
   },

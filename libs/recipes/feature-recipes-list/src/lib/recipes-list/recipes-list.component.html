@@ -1,0 +1,17 @@
+<header>
+  <h2>Recipes list</h2>
+  <ngrecipes-nx-recipes-searchbar></ngrecipes-nx-recipes-searchbar>
+</header>
+<mat-list role="list" id="list" class="mat-typography">
+  <mat-list-item *ngFor="let recipe of recipes$ | async">
+    <ngrecipes-nx-recipes-list-item
+      [value]="recipe"
+      (deleteRecipe)="deleteRecipe($event)"
+    ></ngrecipes-nx-recipes-list-item>
+  </mat-list-item>
+  <mat-list-item>
+    <button mat-button (click)="addNewRecipe()" color="primary">
+      <mat-icon> add </mat-icon> Create new recipe
+    </button>
+  </mat-list-item>
+</mat-list>

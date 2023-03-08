@@ -1,0 +1,24 @@
+<a
+  routerLink="/recipes/{{ value._id }}"
+  routerLinkActive="active"
+  class="full-link"
+></a>
+<div class="flex">
+  <div class="center-self">
+    <span class="recipe-list-element">
+      {{ value.name }}
+    </span>
+  </div>
+  <div>
+    <button
+      mat-icon-button
+      class="icon-small"
+      routerLink="/recipes/{{ value._id }}/edit"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button class="icon-small" (click)="removeRecipe()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
