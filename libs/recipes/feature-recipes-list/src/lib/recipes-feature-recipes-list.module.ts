@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecipesFeatureRecipesSearchModule } from '@ngrecipes-nx/recipes/feature-recipes-search';
 import { RecipesListItemComponent } from './recipes-list-item/recipes-list-item.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { RecipesListItemComponent } from './recipes-list-item/recipes-list-item.
     MatInputModule,
     MatButtonModule,
     RecipesFeatureRecipesSearchModule,
+    RouterModule,
   ],
   declarations: [RecipesListComponent, RecipesListItemComponent],
   exports: [RecipesListComponent],
