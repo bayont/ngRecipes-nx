@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -28,6 +33,7 @@ import {
   selector: 'ngrecipes-nx-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
   private destructor: Subject<boolean> = new Subject();

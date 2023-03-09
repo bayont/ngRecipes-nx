@@ -48,9 +48,6 @@
       ],
       "@ngrecipes-nx/recipes/ui-default-view": [
         "libs/recipes/ui-default-view/src/index.ts"
-      ],
-      "@ngrecipes-nx/recipes/ui-recipes-list-item": [
-        "libs/recipes/ui-recipes-list-item/src/index.ts"
       ]
     }
   },
