@@ -13,6 +13,7 @@
     <div class="flex">
       <div class="flex gap">
         <button
+          type="button"
           mat-fab
           extended
           color="primary"
@@ -21,7 +22,13 @@
           <mat-icon>edit</mat-icon>
           Edit
         </button>
-        <button mat-fab extended color="warn" (click)="onDeleteRecipe(recipe)">
+        <button
+          type="button"
+          mat-fab
+          extended
+          color="warn"
+          (click)="onDeleteRecipe(recipe)"
+        >
           <mat-icon>delete</mat-icon>
           Delete
         </button>

@@ -11,13 +11,19 @@
   </div>
   <div>
     <button
+      type="button"
       mat-icon-button
       class="icon-small"
       routerLink="/recipes/{{ value._id }}/edit"
     >
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-icon-button class="icon-small" (click)="onDeleteRecipe()">
+    <button
+      type="button"
+      mat-icon-button
+      class="icon-small"
+      (click)="onDeleteRecipe()"
+    >
       <mat-icon>delete</mat-icon>
     </button>
   </div>

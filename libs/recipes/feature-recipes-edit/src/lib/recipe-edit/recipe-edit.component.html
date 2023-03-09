@@ -146,6 +146,7 @@
             [formGroupName]="index"
           >
             <button
+              type="button"
               *ngIf="ingredientsArr.controls.length > 1"
               mat-icon-button
               (click)="onDeleteIngredient(index)"
@@ -167,6 +168,7 @@
 
       <div class="table-actions">
         <button
+          type="button"
           mat-flat-button
           color="primary"
           type="button"
@@ -194,10 +196,21 @@
     </div>
 
     <div class="actions">
-      <button mat-flat-button routerLink="/recipes" color="secondary">
+      <button
+        type="button"
+        mat-flat-button
+        routerLink="/recipes"
+        color="secondary"
+      >
         Cancel
       </button>
-      <button mat-flat-button type="submit" color="primary" id="save">
+      <button
+        type="button"
+        mat-flat-button
+        type="submit"
+        color="primary"
+        id="save"
+      >
         Save
       </button>
     </div>
