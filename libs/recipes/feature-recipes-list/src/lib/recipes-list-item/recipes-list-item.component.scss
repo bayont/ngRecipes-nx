@@ -1,0 +1,21 @@
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.center-self {
+  align-self: center;
+}
+.icon-small {
+  transform: scale(0.8);
+}
+.full-link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.full-link.active + div {
+  font-weight: bold;
+}

@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: stretch;
+}
+
+.list {
+  width: max(30em, 30%);
+  height: 100vh;
+  border-right: 1px solid lightgray;
+}
+
+main {
+  width: 100%;
+  padding-top: 2em;
+}
