@@ -29,11 +29,11 @@ export class RecipesListComponent implements OnInit {
     this.store.dispatch(actionFetchRecipes());
   }
 
-  public addNewRecipe(): void {
+  public onAddNewRecipe(): void {
     this.store.dispatch(actionCreateMockRecipe());
   }
 
-  public deleteRecipe(recipe: Recipe): void {
+  public onDeleteRecipe(recipe: Recipe): void {
     this.confirmDeleteDialog.askForRecipeDelete(recipe);
   }
 }

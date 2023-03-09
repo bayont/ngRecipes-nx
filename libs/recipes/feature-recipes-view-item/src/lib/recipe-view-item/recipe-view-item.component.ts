@@ -60,7 +60,7 @@ export class RecipeViewItemComponent implements OnInit, OnDestroy {
     );
   }
 
-  public deleteRecipe(recipe: Recipe): void {
+  public onDeleteRecipe(recipe: Recipe): void {
     this.confirmDeleteDialog.askForRecipeDelete(recipe);
   }
 }

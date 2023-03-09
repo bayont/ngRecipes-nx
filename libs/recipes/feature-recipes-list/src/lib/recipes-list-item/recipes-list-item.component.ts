@@ -17,7 +17,7 @@ export class RecipesListItemComponent {
   @Input() value: Recipe = {} as Recipe;
   @Output() deleteRecipe = new EventEmitter<Recipe>();
 
-  public removeRecipe() {
+  public onDeleteRecipe() {
     this.deleteRecipe.emit(this.value);
   }
 }

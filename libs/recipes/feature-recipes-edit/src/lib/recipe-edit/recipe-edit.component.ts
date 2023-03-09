@@ -79,7 +79,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     return this.editRecipeForm?.get('ingredients') as FormArray;
   }
 
-  public addNewIngredient() {
+  public onAddNewIngredient() {
     this.ingredientsArr.push(
       this.buildIngredientRow((this.ingredientsArr.length + 1).toString())
     );
@@ -87,7 +87,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     this.updateIngredientsView();
   }
 
-  public deleteIngredient(index: number) {
+  public onDeleteIngredient(index: number) {
     this.ingredientsArr.removeAt(index);
     this.ingredientsArr.markAsDirty();
     this.updateIngredientsView();

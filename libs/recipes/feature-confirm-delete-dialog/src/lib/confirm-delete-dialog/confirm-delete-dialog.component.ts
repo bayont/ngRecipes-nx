@@ -14,11 +14,11 @@ export class ConfirmDeleteDialogComponent {
     private readonly dialogRef: MatDialogRef<ConfirmDeleteDialogComponent>
   ) {}
 
-  public closeDialog(): void {
+  public onCloseDialog(): void {
     this.dialogRef.close(false);
   }
 
-  public deleteRecipe(): void {
+  public onDeleteRecipe(): void {
     this.dialogRef.close(true);
   }
 }

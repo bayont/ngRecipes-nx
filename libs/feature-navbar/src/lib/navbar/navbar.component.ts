@@ -12,7 +12,7 @@ export class NavbarComponent {
     private readonly authorDetailsDialogService: AuthorDetailsDialogService
   ) {}
 
-  openAuthorDetailsDialog(): void {
+  onOpenAuthorDetailsDialog(): void {
     this.authorDetailsDialogService.openDialog();
   }
 }

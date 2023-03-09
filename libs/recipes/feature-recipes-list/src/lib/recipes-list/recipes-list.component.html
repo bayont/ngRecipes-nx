@@ -6,11 +6,11 @@
   <mat-list-item *ngFor="let recipe of recipes$ | async">
     <ngrecipes-nx-recipes-list-item
       [value]="recipe"
-      (deleteRecipe)="deleteRecipe($event)"
+      (deleteRecipe)="onDeleteRecipe($event)"
     ></ngrecipes-nx-recipes-list-item>
   </mat-list-item>
   <mat-list-item>
-    <button mat-button (click)="addNewRecipe()" color="primary">
+    <button mat-button (click)="onAddNewRecipe()" color="primary">
       <mat-icon> add </mat-icon> Create new recipe
     </button>
   </mat-list-item>

@@ -148,7 +148,7 @@
             <button
               *ngIf="ingredientsArr.controls.length > 1"
               mat-icon-button
-              (click)="deleteIngredient(index)"
+              (click)="onDeleteIngredient(index)"
             >
               <mat-icon>delete</mat-icon>
             </button>
@@ -170,7 +170,7 @@
           mat-flat-button
           color="primary"
           type="button"
-          (click)="addNewIngredient()"
+          (click)="onAddNewIngredient()"
         >
           <mat-icon>add</mat-icon>
           Add new Row
