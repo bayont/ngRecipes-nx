@@ -21,7 +21,7 @@ import { RecipeHttpService } from '@ngrecipes-nx/recipes/data-access-recipes';
 export class RecipeNameValidatorDirective implements AsyncValidator {
   @Input('ngrecipesNxRecipeNameValidator') recipeId = '';
 
-  constructor(private recipeHttpService: RecipeHttpService) {}
+  constructor(private readonly recipeHttpService: RecipeHttpService) {}
 
   validate(
     control: AbstractControl<string, string>

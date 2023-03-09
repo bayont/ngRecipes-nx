@@ -22,9 +22,9 @@ import { selectRecipes } from './recipe.select';
 export class RecipeListEffects {
   constructor(
     private readonly action$: Actions,
-    private store: Store,
-    private recipeHttpService: RecipeHttpService,
-    private router: Router
+    private readonly store: Store,
+    private readonly recipeHttpService: RecipeHttpService,
+    private readonly router: Router
   ) {}
 
   onFetchRecipes$ = createEffect(() => {

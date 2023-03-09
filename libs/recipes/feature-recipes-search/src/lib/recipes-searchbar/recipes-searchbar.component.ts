@@ -18,7 +18,7 @@ export class RecipesSearchbarComponent implements OnInit, OnDestroy {
   public searchBar = new FormControl('');
   private destructor = new Subject<boolean>();
 
-  constructor(private searchRecipesService: SearchRecipesService) {}
+  constructor(private readonly searchRecipesService: SearchRecipesService) {}
 
   ngOnInit(): void {
     this.searchBar.valueChanges

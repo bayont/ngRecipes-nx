@@ -10,7 +10,7 @@ import { Recipe } from './models';
 export class RecipeHttpService {
   private readonly RECIPE_ENDPOINT = `https://crudcrud.com/api/8293cae932cb45fa9077e03b8dd62f02/recipes`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public fetchRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.RECIPE_ENDPOINT);

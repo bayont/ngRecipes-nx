@@ -10,8 +10,8 @@ import { Recipe } from '@ngrecipes-nx/recipes/data-access-recipes';
 })
 export class ConfirmDeleteDialogComponent {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public recipe: Recipe,
-    private dialogRef: MatDialogRef<ConfirmDeleteDialogComponent>
+    @Inject(MAT_DIALOG_DATA) public readonly recipe: Recipe,
+    private readonly dialogRef: MatDialogRef<ConfirmDeleteDialogComponent>
   ) {}
 
   public closeDialog(): void {

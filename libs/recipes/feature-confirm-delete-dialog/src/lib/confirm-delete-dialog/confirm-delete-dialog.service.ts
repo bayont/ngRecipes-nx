@@ -11,7 +11,10 @@ import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog.component'
   providedIn: 'root',
 })
 export class ConfirmDeleteDialogService {
-  constructor(private store: Store, private matDialog: MatDialog) {}
+  constructor(
+    private readonly store: Store,
+    private readonly matDialog: MatDialog
+  ) {}
 
   public askForRecipeDelete(recipe: Recipe) {
     const dialogRef = this.matDialog.open(ConfirmDeleteDialogComponent, {

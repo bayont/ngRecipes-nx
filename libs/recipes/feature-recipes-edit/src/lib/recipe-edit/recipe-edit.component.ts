@@ -39,10 +39,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   private destructor: Subject<boolean> = new Subject();
 
   constructor(
-    private route: ActivatedRoute,
-    private store: Store,
-    private fb: FormBuilder,
-    private router: Router
+    private readonly route: ActivatedRoute,
+    private readonly store: Store,
+    private readonly fb: FormBuilder,
+    private readonly router: Router
   ) {}
 
   public recipe$!: Observable<Recipe | undefined>;

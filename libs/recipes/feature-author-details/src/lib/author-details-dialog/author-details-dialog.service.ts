@@ -6,7 +6,7 @@ import { AuthorDetailsDialogComponent } from './author-details-dialog.component'
   providedIn: 'root',
 })
 export class AuthorDetailsDialogService {
-  constructor(private matDialog: MatDialog) {}
+  constructor(private readonly matDialog: MatDialog) {}
 
   openDialog() {
     this.matDialog.open(AuthorDetailsDialogComponent);

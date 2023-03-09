@@ -20,9 +20,9 @@ export class RecipesListComponent implements OnInit {
     this.searchRecipesService.recipesSubject.asObservable();
 
   constructor(
-    private store: Store,
-    private searchRecipesService: SearchRecipesService,
-    private confirmDeleteDialog: ConfirmDeleteDialogService
+    private readonly store: Store,
+    private readonly searchRecipesService: SearchRecipesService,
+    private readonly confirmDeleteDialog: ConfirmDeleteDialogService
   ) {}
 
   ngOnInit(): void {

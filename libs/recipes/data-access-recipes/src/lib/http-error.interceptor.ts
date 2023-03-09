@@ -11,7 +11,7 @@ import { catchError, Observable } from 'rxjs';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private readonly snackBar: MatSnackBar) {}
   intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler

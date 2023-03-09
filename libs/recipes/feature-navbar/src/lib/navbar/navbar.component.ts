@@ -8,7 +8,9 @@ import { AuthorDetailsDialogService } from '@ngrecipes-nx/recipes/feature-author
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  constructor(private authorDetailsDialogService: AuthorDetailsDialogService) {}
+  constructor(
+    private readonly authorDetailsDialogService: AuthorDetailsDialogService
+  ) {}
 
   openAuthorDetailsDialog(): void {
     this.authorDetailsDialogService.openDialog();

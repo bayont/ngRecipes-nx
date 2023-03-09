@@ -30,10 +30,10 @@ export class RecipeViewItemComponent implements OnInit, OnDestroy {
   private destructor: Subject<boolean> = new Subject();
 
   constructor(
-    private route: ActivatedRoute,
-    private store: Store,
-    private router: Router,
-    private confirmDeleteDialog: ConfirmDeleteDialogService
+    private readonly route: ActivatedRoute,
+    private readonly store: Store,
+    private readonly router: Router,
+    private readonly confirmDeleteDialog: ConfirmDeleteDialogService
   ) {}
 
   public recipe$!: Observable<Recipe | undefined>;

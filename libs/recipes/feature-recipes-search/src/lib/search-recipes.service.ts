@@ -10,7 +10,7 @@ import { of, Subject, switchMap } from 'rxjs';
   providedIn: 'root',
 })
 export class SearchRecipesService {
-  constructor(private store: Store) {}
+  constructor(private readonly store: Store) {}
 
   public recipesSubject: Subject<Recipe[]> = new Subject();
 
