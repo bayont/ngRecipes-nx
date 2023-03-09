@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, switchMap } from 'rxjs';
 
-import { Recipe } from './models';
+import { Recipe } from '../models';
 
 @Injectable({
   providedIn: 'root',

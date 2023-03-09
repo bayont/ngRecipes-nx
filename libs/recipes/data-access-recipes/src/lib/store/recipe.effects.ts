@@ -13,8 +13,8 @@ import {
   actionUpdateRecipe,
 } from './recipe.actions';
 import { combineLatest, map, of, repeat, switchMap, tap } from 'rxjs';
-import { RecipeHttpService } from '../recipe-http.service';
 import { Router } from '@angular/router';
+import { RecipeHttpService } from '../services';
 import { Recipe } from '../models';
 import { selectRecipes } from './recipe.select';
 
