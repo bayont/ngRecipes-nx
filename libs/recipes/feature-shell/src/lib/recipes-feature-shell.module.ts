@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { Routes } from '@angular/router';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RecipesFeatureNavbarModule } from '@ngrecipes-nx/recipes/feature-navbar';
+import { FeatureNavbarModule } from '@ngrecipes-nx/feature-navbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContainerComponent } from './container/container.component';
 import { DefaultViewComponent } from '@ngrecipes-nx/recipes/ui-default-view';
@@ -22,6 +22,7 @@ import {
 } from '@ngrecipes-nx/recipes/data-access-recipes';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 export const routes: Routes = [
   {
     path: 'recipes',
@@ -49,7 +50,7 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    RecipesFeatureNavbarModule,
+    FeatureNavbarModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(
       {},
@@ -65,7 +66,6 @@ export const routes: Routes = [
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([RecipeListEffects]),
     StoreRouterConnectingModule.forRoot(),
-    RecipesFeatureNavbarModule,
     RecipesFeatureRecipesListModule,
     HttpClientModule,
     MatSnackBarModule,

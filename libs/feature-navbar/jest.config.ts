@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'recipes-feature-navbar',
-  preset: '../../../jest.preset.js',
+  displayName: 'feature-navbar',
+  preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/recipes/feature-navbar',
+  coverageDirectory: '../../coverage/libs/feature-navbar',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

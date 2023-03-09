@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "types": ["node"],
     "paths": {
+      "@ngrecipes-nx/feature-navbar": ["libs/feature-navbar/src/index.ts"],
       "@ngrecipes-nx/recipes/data-access-recipes": [
         "libs/recipes/data-access-recipes/src/index.ts"
       ],
@@ -27,9 +28,6 @@
       ],
       "@ngrecipes-nx/recipes/feature-format-time": [
         "libs/recipes/feature-format-time/src/index.ts"
-      ],
-      "@ngrecipes-nx/recipes/feature-navbar": [
-        "libs/recipes/feature-navbar/src/index.ts"
       ],
       "@ngrecipes-nx/recipes/feature-recipes-edit": [
         "libs/recipes/feature-recipes-edit/src/index.ts"
