@@ -43,6 +43,9 @@
       "@ngrecipes-nx/shared/feature-author-details": [
         "libs/shared/feature-author-details/src/index.ts"
       ],
+      "@ngrecipes-nx/shared/feature-footer": [
+        "libs/shared/feature-footer/src/index.ts"
+      ],
       "@ngrecipes-nx/shared/feature-navbar": [
         "libs/shared/feature-navbar/src/index.ts"
       ],
