@@ -6,7 +6,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { Routes } from '@angular/router';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { FeatureNavbarModule } from '@ngrecipes-nx/feature-navbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContainerComponent } from './container/container.component';
 import { DefaultViewComponent } from '@ngrecipes-nx/recipes/ui-default-view';
@@ -50,7 +49,6 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    FeatureNavbarModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(
       {},
