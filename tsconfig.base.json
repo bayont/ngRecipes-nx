@@ -19,9 +19,6 @@
       "@ngrecipes-nx/recipes/data-access-recipes": [
         "libs/recipes/data-access-recipes/src/index.ts"
       ],
-      "@ngrecipes-nx/recipes/feature-confirm-delete-dialog": [
-        "libs/recipes/feature-confirm-delete-dialog/src/index.ts"
-      ],
       "@ngrecipes-nx/recipes/feature-recipes-edit": [
         "libs/recipes/feature-recipes-edit/src/index.ts"
       ],
@@ -43,6 +40,9 @@
       "@ngrecipes-nx/shared/feature-author-details": [
         "libs/shared/feature-author-details/src/index.ts"
       ],
+      "@ngrecipes-nx/shared/feature-confirm-dialog": [
+        "libs/shared/feature-confirm-dialog/src/index.ts"
+      ],
       "@ngrecipes-nx/shared/feature-footer": [
         "libs/shared/feature-footer/src/index.ts"
       ],
@@ -51,6 +51,9 @@
       ],
       "@ngrecipes-nx/shared/util-format-time": [
         "libs/shared/util-format-time/src/index.ts"
+      ],
+      "@ngrecipes-nx/shared/util-text-style": [
+        "libs/shared/util-text-style/src/index.ts"
       ]
     }
   },

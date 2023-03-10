@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import {
   actionCreateMockRecipe,
+  actionDeleteRecipe,
   actionFetchRecipes,
   Recipe,
 } from '@ngrecipes-nx/recipes/data-access-recipes';
 import { SearchRecipesService } from '@ngrecipes-nx/recipes/feature-recipes-search';
-import { ConfirmDeleteDialogService } from '@ngrecipes-nx/recipes/feature-confirm-delete-dialog';
+import { ConfirmDialogService } from '@ngrecipes-nx/shared/feature-confirm-dialog';
 
 @Component({
   selector: 'ngrecipes-nx-recipes-list',
@@ -22,7 +23,7 @@ export class RecipesListComponent implements OnInit {
   constructor(
     private readonly store: Store,
     private readonly searchRecipesService: SearchRecipesService,
-    private readonly confirmDeleteDialog: ConfirmDeleteDialogService
+    private readonly confirmDialogService: ConfirmDialogService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +35,20 @@ export class RecipesListComponent implements OnInit {
   }
 
   public onDeleteRecipe(recipe: Recipe): void {
-    this.confirmDeleteDialog.askForRecipeDelete(recipe);
+    this.confirmDialogService
+      .ask(
+        'Confirm recipe removal',
+        `Do you really want to delete *${recipe.name}*?`
+      )
+      .pipe(take(1))
+      .subscribe((result) => {
+        if (result) {
+          this.deleteRecipe(recipe);
+        }
+      });
+  }
+
+  private deleteRecipe(recipe: Recipe) {
+    this.store.dispatch(actionDeleteRecipe({ recipeId: recipe._id }));
   }
 }

@@ -6,10 +6,11 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  actionDeleteRecipe,
   Recipe,
   selectRecipes,
 } from '@ngrecipes-nx/recipes/data-access-recipes';
-import { ConfirmDeleteDialogService } from '@ngrecipes-nx/recipes/feature-confirm-delete-dialog';
+import { ConfirmDialogService } from '@ngrecipes-nx/shared/feature-confirm-dialog';
 import { Store } from '@ngrx/store';
 import {
   combineLatest,
@@ -17,6 +18,7 @@ import {
   of,
   Subject,
   switchMap,
+  take,
   takeUntil,
 } from 'rxjs';
 
@@ -33,7 +35,7 @@ export class RecipeViewItemComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly store: Store,
     private readonly router: Router,
-    private readonly confirmDeleteDialog: ConfirmDeleteDialogService
+    private readonly confirmDialogService: ConfirmDialogService
   ) {}
 
   public recipe$!: Observable<Recipe | undefined>;
@@ -61,6 +63,20 @@ export class RecipeViewItemComponent implements OnInit, OnDestroy {
   }
 
   public onDeleteRecipe(recipe: Recipe): void {
-    this.confirmDeleteDialog.askForRecipeDelete(recipe);
+    this.confirmDialogService
+      .ask(
+        'Confirm recipe removal',
+        `Do you really want to delete *${recipe.name}*?`
+      )
+      .pipe(take(1))
+      .subscribe((result) => {
+        if (result) {
+          this.deleteRecipe(recipe);
+        }
+      });
+  }
+
+  private deleteRecipe(recipe: Recipe) {
+    this.store.dispatch(actionDeleteRecipe({ recipeId: recipe._id }));
   }
 }

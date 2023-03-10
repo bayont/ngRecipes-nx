@@ -1,10 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'recipes-feature-confirm-delete-dialog',
+  displayName: 'shared-feature-confirm-dialog',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory:
-    '../../../coverage/libs/recipes/feature-confirm-delete-dialog',
+  coverageDirectory: '../../../coverage/libs/shared/feature-confirm-dialog',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

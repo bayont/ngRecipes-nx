@@ -8,7 +8,7 @@ import { Recipe } from '../models';
   providedIn: 'root',
 })
 export class RecipeHttpService {
-  private readonly RECIPE_ENDPOINT = `https://crudcrud.com/api/ddbdb6d69ed9433aaf653244e766dc97/recipes`;
+  private readonly RECIPE_ENDPOINT = `https://crudcrud.com/api/59e8e54ce4ad410aa214ff4bcf854892/recipes`;
 
   constructor(private readonly http: HttpClient) {}
 
