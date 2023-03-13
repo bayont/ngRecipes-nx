@@ -18,13 +18,6 @@ import { ContainerComponent } from './container/container.component';
 
 export const routes: Routes = [
   {
-    path: 'recipes-feature-home',
-    loadChildren: () =>
-      import('@ngrecipes-nx/recipes/feature-home').then(
-        (m) => m.RecipesFeatureHomeModule
-      ),
-  },
-  {
     path: '',
     component: ContainerComponent,
     children: [
