@@ -5,6 +5,7 @@ import { TextStyleParser } from './parsers/text-style.parser';
 
 @Pipe({
   name: 'textStyle',
+  standalone: true,
 })
 export class TextStylePipe implements PipeTransform {
   private readonly parsers: TextStyleParser[] = [

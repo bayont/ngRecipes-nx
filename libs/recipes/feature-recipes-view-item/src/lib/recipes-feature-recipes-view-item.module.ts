@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
-import { SharedUtilFormatTimeModule } from '@ngrecipes-nx/shared/util-format-time';
+import { FormatTimePipe } from '@ngrecipes-nx/shared/util-format-time';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { SharedUtilFormatTimeModule } from '@ngrecipes-nx/shared/util-format-tim
     MatIconModule,
     MatTableModule,
     RouterLink,
-    SharedUtilFormatTimeModule,
+    FormatTimePipe,
   ],
   declarations: [RecipeViewItemComponent],
   exports: [RecipeViewItemComponent],

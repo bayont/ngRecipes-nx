@@ -1,1 +1,1 @@
-export * from './lib/shared-util-text-style.module';
+export { TextStylePipe } from './lib/text-style.pipe';

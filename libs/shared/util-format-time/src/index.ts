@@ -1,1 +1,1 @@
-export * from './lib/shared-util-format-time.module';
+export { FormatTimePipe } from './lib/format-time.pipe';
