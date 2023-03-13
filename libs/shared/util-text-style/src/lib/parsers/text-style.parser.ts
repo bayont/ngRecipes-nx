@@ -17,7 +17,6 @@ export abstract class TextStyleParser {
   }
 
   public parse(text: string): string {
-    console.log(this.regex);
     const textsToReplace = text.match(this.regex());
     textsToReplace?.forEach((textToReplace) => {
       text = text.replace(
