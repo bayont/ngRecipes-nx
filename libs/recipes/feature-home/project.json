@@ -1,15 +1,15 @@
 {
-  "name": "recipes-ui-default-view",
+  "name": "recipes-feature-home",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/recipes/ui-default-view/src",
+  "sourceRoot": "libs/recipes/feature-home/src",
   "prefix": "ngrecipes-nx",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/recipes/ui-default-view/jest.config.ts",
+        "jestConfig": "libs/recipes/feature-home/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -24,8 +24,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/recipes/ui-default-view/**/*.ts",
-          "libs/recipes/ui-default-view/**/*.html"
+          "libs/recipes/feature-home/**/*.ts",
+          "libs/recipes/feature-home/**/*.html"
         ]
       }
     }

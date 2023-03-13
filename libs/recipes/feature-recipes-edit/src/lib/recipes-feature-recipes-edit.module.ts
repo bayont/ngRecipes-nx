@@ -19,9 +19,10 @@ import { RecipeNameValidatorDirective } from './recipe-name-validator.directive'
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    RouterModule,
+    RouterModule.forChild([
+      { path: '', pathMatch: 'full', component: RecipeEditComponent },
+    ]),
   ],
   declarations: [RecipeEditComponent, RecipeNameValidatorDirective],
-  exports: [RecipeEditComponent],
 })
 export class RecipesFeatureRecipesEditModule {}

@@ -6,9 +6,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { DefaultViewComponent } from '@ngrecipes-nx/recipes/ui-default-view';
-import { RecipeEditComponent } from '@ngrecipes-nx/recipes/feature-recipes-edit';
-import { RecipeViewItemComponent } from '@ngrecipes-nx/recipes/feature-recipes-view-item';
 import { RecipesFeatureRecipesListModule } from '@ngrecipes-nx/recipes/feature-recipes-list';
 import {
   HttpApiInterceptor,
@@ -21,17 +18,36 @@ import { ContainerComponent } from './container/container.component';
 
 export const routes: Routes = [
   {
+    path: 'recipes-feature-home',
+    loadChildren: () =>
+      import('@ngrecipes-nx/recipes/feature-home').then(
+        (m) => m.RecipesFeatureHomeModule
+      ),
+  },
+  {
     path: '',
     component: ContainerComponent,
     children: [
       {
         path: ':id/edit',
-        component: RecipeEditComponent,
+        loadChildren: () =>
+          import('@ngrecipes-nx/recipes/feature-recipes-edit').then(
+            (m) => m.RecipesFeatureRecipesEditModule
+          ),
       },
-      { path: ':id', component: RecipeViewItemComponent },
+      {
+        path: ':id',
+        loadChildren: () =>
+          import('@ngrecipes-nx/recipes/feature-recipes-view-item').then(
+            (m) => m.RecipesFeatureRecipesViewItemModule
+          ),
+      },
       {
         path: '',
-        component: DefaultViewComponent,
+        loadChildren: () =>
+          import('@ngrecipes-nx/recipes/feature-home').then(
+            (m) => m.RecipesFeatureHomeModule
+          ),
         pathMatch: 'full',
       },
     ],

@@ -19,6 +19,9 @@
       "@ngrecipes-nx/recipes/data-access-recipes": [
         "libs/recipes/data-access-recipes/src/index.ts"
       ],
+      "@ngrecipes-nx/recipes/feature-home": [
+        "libs/recipes/feature-home/src/index.ts"
+      ],
       "@ngrecipes-nx/recipes/feature-recipes-edit": [
         "libs/recipes/feature-recipes-edit/src/index.ts"
       ],
@@ -33,9 +36,6 @@
       ],
       "@ngrecipes-nx/recipes/feature-shell": [
         "libs/recipes/feature-shell/src/index.ts"
-      ],
-      "@ngrecipes-nx/recipes/ui-default-view": [
-        "libs/recipes/ui-default-view/src/index.ts"
       ],
       "@ngrecipes-nx/shared/feature-author-details": [
         "libs/shared/feature-author-details/src/index.ts"

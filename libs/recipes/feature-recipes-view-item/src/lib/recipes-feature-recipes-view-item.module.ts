@@ -4,7 +4,7 @@ import { RecipeViewItemComponent } from './recipe-view-item/recipe-view-item.com
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { FormatTimePipe } from '@ngrecipes-nx/shared/util-format-time';
 
 @NgModule({
@@ -15,8 +15,10 @@ import { FormatTimePipe } from '@ngrecipes-nx/shared/util-format-time';
     MatTableModule,
     RouterLink,
     FormatTimePipe,
+    RouterModule.forChild([
+      { path: '', pathMatch: 'full', component: RecipeViewItemComponent },
+    ]),
   ],
   declarations: [RecipeViewItemComponent],
-  exports: [RecipeViewItemComponent],
 })
 export class RecipesFeatureRecipesViewItemModule {}
