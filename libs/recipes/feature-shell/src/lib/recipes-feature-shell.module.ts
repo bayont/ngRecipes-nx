@@ -4,10 +4,8 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { Routes } from '@angular/router';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ContainerComponent } from './container/container.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DefaultViewComponent } from '@ngrecipes-nx/recipes/ui-default-view';
 import { RecipeEditComponent } from '@ngrecipes-nx/recipes/feature-recipes-edit';
 import { RecipeViewItemComponent } from '@ngrecipes-nx/recipes/feature-recipes-view-item';
@@ -19,12 +17,11 @@ import {
   recipesReducer,
   RECIPES_FEATURE_NAME,
 } from '@ngrecipes-nx/recipes/data-access-recipes';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ContainerComponent } from './container/container.component';
 
 export const routes: Routes = [
   {
-    path: 'recipes',
+    path: '',
     component: ContainerComponent,
     children: [
       {
@@ -35,37 +32,19 @@ export const routes: Routes = [
       {
         path: '',
         component: DefaultViewComponent,
+        pathMatch: 'full',
       },
     ],
-  },
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'recipes',
   },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    BrowserAnimationsModule,
-    StoreModule.forRoot(
-      {},
-      {
-        metaReducers: [],
-        runtimeChecks: {
-          strictActionImmutability: true,
-          strictStateImmutability: true,
-        },
-      }
-    ),
+    RouterModule.forChild(routes),
     StoreModule.forFeature(RECIPES_FEATURE_NAME, recipesReducer),
-    StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([RecipeListEffects]),
-    StoreRouterConnectingModule.forRoot(),
+    EffectsModule.forFeature([RecipeListEffects]),
     RecipesFeatureRecipesListModule,
-    HttpClientModule,
     MatSnackBarModule,
   ],
   exports: [RouterModule],
