@@ -14,12 +14,46 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "types": ["node"],
     "paths": {
-      "@ngrecipes-nx/recipes/feature-author-details": [
-        "libs/recipes/feature-author-details/src/index.ts"
+      "@ngrecipes-nx/recipes/data-access-recipes": [
+        "libs/recipes/data-access-recipes/src/index.ts"
       ],
-      "@ngrecipes-nx/recipes/feature-navbar": [
-        "libs/recipes/feature-navbar/src/index.ts"
+      "@ngrecipes-nx/recipes/feature-home": [
+        "libs/recipes/feature-home/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-recipes-edit": [
+        "libs/recipes/feature-recipes-edit/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-recipes-list": [
+        "libs/recipes/feature-recipes-list/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-recipes-search": [
+        "libs/recipes/feature-recipes-search/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-recipes-view-item": [
+        "libs/recipes/feature-recipes-view-item/src/index.ts"
+      ],
+      "@ngrecipes-nx/recipes/feature-shell": [
+        "libs/recipes/feature-shell/src/index.ts"
+      ],
+      "@ngrecipes-nx/shared/feature-author-details": [
+        "libs/shared/feature-author-details/src/index.ts"
+      ],
+      "@ngrecipes-nx/shared/feature-confirm-dialog": [
+        "libs/shared/feature-confirm-dialog/src/index.ts"
+      ],
+      "@ngrecipes-nx/shared/feature-footer": [
+        "libs/shared/feature-footer/src/index.ts"
+      ],
+      "@ngrecipes-nx/shared/feature-navbar": [
+        "libs/shared/feature-navbar/src/index.ts"
+      ],
+      "@ngrecipes-nx/shared/util-format-time": [
+        "libs/shared/util-format-time/src/index.ts"
+      ],
+      "@ngrecipes-nx/shared/util-text-style": [
+        "libs/shared/util-text-style/src/index.ts"
       ]
     }
   },

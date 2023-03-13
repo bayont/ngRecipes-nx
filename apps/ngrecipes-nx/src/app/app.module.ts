@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule } from '@angular/router';
-import { appRoutes } from './app.routes';
-import { RecipesFeatureNavbarModule } from '@ngrecipes-nx/recipes/feature-navbar';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SharedFeatureNavbarModule } from '@ngrecipes-nx/shared/feature-navbar';
+import { SharedFeatureFooterModule } from '@ngrecipes-nx/shared/feature-footer';
+import { AppComponent } from './app.component';
+import { appRoutes } from './app.routes';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
-    RecipesFeatureNavbarModule,
+    SharedFeatureNavbarModule,
+    SharedFeatureFooterModule,
+    HttpClientModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes),
     StoreModule.forRoot(
       {},
       {
@@ -30,6 +33,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     ),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
   bootstrap: [AppComponent],
