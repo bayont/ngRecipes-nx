@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
+import { of } from 'rxjs';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 
 import { ConfirmDialogService } from './confirm-dialog.service';
@@ -9,8 +10,7 @@ describe('ConfirmDialogService', () => {
   let matDialog: MatDialog;
   const mockMatDialog = {
     open: () => {
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      return { afterClosed: () => {} };
+      return { afterClosed: () => of(true) };
     },
   };
 
