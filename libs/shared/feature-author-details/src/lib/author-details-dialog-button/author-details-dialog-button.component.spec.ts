@@ -6,6 +6,8 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 
 import { AuthorDetailsDialogButtonComponent } from './author-details-dialog-button.component';
 import { AuthorDetailsDialogService } from '../author-details-dialog/author-details-dialog.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('AuthorDetailsDialogButtonComponent', () => {
   let component: AuthorDetailsDialogButtonComponent;
@@ -19,6 +21,7 @@ describe('AuthorDetailsDialogButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [MatIconModule, MatButtonModule],
       declarations: [AuthorDetailsDialogButtonComponent],
       providers: [
         {
