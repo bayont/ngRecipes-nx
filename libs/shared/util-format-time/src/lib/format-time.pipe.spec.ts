@@ -8,7 +8,7 @@ describe('FormatTimePipe', () => {
 
   it('should tranform time properly', () => {
     const formatTimePipe = new FormatTimePipe();
-    const tests: Array<{ minutes: number; expectedResult: string }> = [
+    const tests: { minutes: number; expectedResult: string }[] = [
       {
         minutes: 20,
         expectedResult: '0h 20m',
