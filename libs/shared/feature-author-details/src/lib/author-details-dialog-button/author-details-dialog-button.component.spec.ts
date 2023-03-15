@@ -1,22 +1,50 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { MatButtonHarness } from '@angular/material/button/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 
 import { AuthorDetailsDialogButtonComponent } from './author-details-dialog-button.component';
+import { AuthorDetailsDialogService } from '../author-details-dialog/author-details-dialog.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('AuthorDetailsDialogButtonComponent', () => {
   let component: AuthorDetailsDialogButtonComponent;
   let fixture: ComponentFixture<AuthorDetailsDialogButtonComponent>;
+  let loader: HarnessLoader;
+  const mockAuthorDetailsDialogService = {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    openDialog: () => {},
+  };
+  let authorDetailsDialogService: AuthorDetailsDialogService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [MatIconModule, MatButtonModule],
       declarations: [AuthorDetailsDialogButtonComponent],
+      providers: [
+        {
+          provide: AuthorDetailsDialogService,
+          useValue: mockAuthorDetailsDialogService,
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AuthorDetailsDialogButtonComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    loader = TestbedHarnessEnvironment.loader(fixture);
+    authorDetailsDialogService = TestBed.inject(AuthorDetailsDialogService);
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should open dialog', async () => {
+    jest.spyOn(authorDetailsDialogService, 'openDialog');
+    const button = await loader.getHarness(MatButtonHarness);
+    await button.click();
+    expect(authorDetailsDialogService.openDialog).toHaveBeenCalled();
   });
 });
