@@ -69,7 +69,7 @@ describe('ConfirmDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should result true after clicking yes button', async () => {
+  it('should close dialog and return true by clicking Yes button', async () => {
     jest.spyOn(component, 'onYes');
     jest.spyOn(matDialogRef, 'close');
     const buttonYes = await loader.getHarness(
@@ -80,7 +80,7 @@ describe('ConfirmDialogComponent', () => {
     expect(matDialogRef.close).toBeCalledWith(true);
   });
 
-  it('should result false after clicking no button', async () => {
+  it('should close dialog and return false by clicking No button', async () => {
     jest.spyOn(component, 'onNo');
     jest.spyOn(matDialogRef, 'close');
     const buttonNo = await loader.getHarness(
