@@ -82,9 +82,11 @@ describe('RecipesListComponent', () => {
   });
 
   it('should assign subject to search results when component class get initialized', () => {
+    let expectedRecipes: Recipe[] = [];
     component.recipes$.subscribe((recipes) => {
-      expect(recipes).toBe(recipesFixtures);
+      expectedRecipes = recipes;
     });
+    expect(expectedRecipes).toBe(recipesFixtures);
   });
 
   it('should fetch recipes from store on component init', () => {
