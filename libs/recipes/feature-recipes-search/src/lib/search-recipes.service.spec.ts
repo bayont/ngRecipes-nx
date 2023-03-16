@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { SearchRecipesService } from './search-recipes.service';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
@@ -9,14 +9,11 @@ import {
   selectRecipes,
 } from '@ngrecipes-nx/recipes/data-access-recipes';
 import { MemoizedSelector } from '@ngrx/store';
-import { TestScheduler } from 'rxjs/testing';
-import { skip } from 'rxjs';
 
 describe('SearchRecipesService', () => {
   let service: SearchRecipesService;
   let store: MockStore;
   let mockSelectRecipes: MemoizedSelector<RecipeListState, Recipe[]>;
-  let testScheduler: TestScheduler;
   const recipeFixture: Recipe = recipesFixtures[0];
 
   beforeEach(() => {
@@ -26,26 +23,42 @@ describe('SearchRecipesService', () => {
     service = TestBed.inject(SearchRecipesService);
     store = TestBed.inject(MockStore);
     mockSelectRecipes = store.overrideSelector(selectRecipes, recipesFixtures);
-    testScheduler = new TestScheduler((actual, expected) => {
-      expect(actual).toEqual(expected);
-    });
+    mockSelectRecipes.setResult(recipesFixtures);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should find a recipe by name', () => {
-    mockSelectRecipes.setResult(recipesFixtures);
-    let expectedRecipes: Recipe[] = [];
+  it('should find all recipes when input is empty', (done) => {
     service.recipesSubject.subscribe((recipes) => {
-      expectedRecipes = recipes;
+      expect(recipes).toStrictEqual(recipesFixtures);
+      done();
     });
-    service.searchForRecipes(recipeFixture.name);
-    expect(expectedRecipes).toEqual([recipeFixture]);
+    service.searchForRecipes('');
   });
 
-  it('should find a recipe by ingredient name', () => {
+  it('should find a recipe by name', (done) => {
+    service.recipesSubject.subscribe((recipes) => {
+      expect(recipes).toStrictEqual([recipeFixture]);
+      done();
+    });
+    service.searchForRecipes(recipeFixture.name);
+  });
+
+  it('should find a recipe by ingredient name', (done) => {
+    service.recipesSubject.subscribe((recipes) => {
+      expect(recipes).toStrictEqual([recipeFixture]);
+      done();
+    });
     service.searchForRecipes(recipeFixture.ingredients[0].name);
+  });
+
+  it('should not find any recipes', (done) => {
+    service.recipesSubject.subscribe((recipes) => {
+      expect(recipes).toStrictEqual([]);
+      done();
+    });
+    service.searchForRecipes('randomName');
   });
 });
