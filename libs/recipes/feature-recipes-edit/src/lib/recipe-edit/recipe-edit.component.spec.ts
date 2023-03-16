@@ -7,7 +7,7 @@ import {
   recipesFixtures,
   selectRecipes,
 } from '@ngrecipes-nx/recipes/data-access-recipes';
-import { of, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MemoizedSelector } from '@ngrx/store';
 
