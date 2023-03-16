@@ -30,39 +30,35 @@ describe('SearchRecipesService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should find all recipes when input is empty', () => {
-    let expectedRecipes: Recipe[] = [];
+  it('should find all recipes when input is empty', (done) => {
     service.recipesSubject.subscribe((recipes) => {
-      expectedRecipes = recipes;
+      expect(recipes).toStrictEqual(recipesFixtures);
+      done();
     });
     service.searchForRecipes('');
-    expect(expectedRecipes).toEqual(recipesFixtures);
   });
 
-  it('should find a recipe by name', () => {
-    let expectedRecipes: Recipe[] = [];
+  it('should find a recipe by name', (done) => {
     service.recipesSubject.subscribe((recipes) => {
-      expectedRecipes = recipes;
+      expect(recipes).toStrictEqual([recipeFixture]);
+      done();
     });
     service.searchForRecipes(recipeFixture.name);
-    expect(expectedRecipes).toEqual([recipeFixture]);
   });
 
-  it('should find a recipe by ingredient name', () => {
-    let expectedRecipes: Recipe[] = [];
+  it('should find a recipe by ingredient name', (done) => {
     service.recipesSubject.subscribe((recipes) => {
-      expectedRecipes = recipes;
+      expect(recipes).toStrictEqual([recipeFixture]);
+      done();
     });
     service.searchForRecipes(recipeFixture.ingredients[0].name);
-    expect(expectedRecipes).toStrictEqual([recipeFixture]);
   });
 
-  it('should not find any recipes', () => {
-    let expectedRecipes: Recipe[] = [];
+  it('should not find any recipes', (done) => {
     service.recipesSubject.subscribe((recipes) => {
-      expectedRecipes = recipes;
+      expect(recipes).toStrictEqual([]);
+      done();
     });
     service.searchForRecipes('randomName');
-    expect(expectedRecipes).toStrictEqual([]);
   });
 });
