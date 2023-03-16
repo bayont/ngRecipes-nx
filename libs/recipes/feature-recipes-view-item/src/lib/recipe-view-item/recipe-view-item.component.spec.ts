@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecipeViewItemComponent } from './recipe-view-item.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, of, take } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import {
   actionDeleteRecipe,
   Recipe,
@@ -14,8 +13,11 @@ import {
 } from '@ngrecipes-nx/recipes/data-access-recipes';
 import { ConfirmDialogService } from '@ngrecipes-nx/shared/feature-confirm-dialog';
 import { FormatTimePipe } from '@ngrecipes-nx/shared/util-format-time';
-import { MemoizedSelector, Store } from '@ngrx/store';
+import { MemoizedSelector } from '@ngrx/store';
 import { TestScheduler } from 'rxjs/testing';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RecipeViewItemComponent', () => {
   let component: RecipeViewItemComponent;
@@ -27,7 +29,7 @@ describe('RecipeViewItemComponent', () => {
   let testScheduler: TestScheduler;
   const recipeFixture: Recipe = recipesFixtures[0];
   const mockRouter = {
-    navigateByUrl: () => {},
+    navigateByUrl: async () => true,
   };
   const activatedRoute = new BehaviorSubject<{ id: string }>({
     id: recipeFixture._id,
@@ -44,7 +46,12 @@ describe('RecipeViewItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormatTimePipe],
+      imports: [
+        FormatTimePipe,
+        MatTableModule,
+        MatIconModule,
+        RouterTestingModule,
+      ],
       declarations: [RecipeViewItemComponent],
       providers: [
         provideMockStore({ initialState: { recipes: recipesFixtures } }),
