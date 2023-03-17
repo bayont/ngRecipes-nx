@@ -62,6 +62,9 @@
           "browserTarget": "ngrecipes-nx:build:development"
         }
       },
+      "options": {
+        "proxyConfig": "apps/ngrecipes-nx/proxy.conf.json"
+      },
       "defaultConfiguration": "development"
     },
     "extract-i18n": {
