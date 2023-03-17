@@ -12,7 +12,7 @@ import {
   actionSetUpdatedRecipe,
   actionUpdateRecipe,
 } from './recipe.actions';
-import { combineLatest, map, of, repeat, switchMap, tap } from 'rxjs';
+import { combineLatest, map, of, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { RecipeHttpService } from '../services';
 import { Recipe } from '../models';
@@ -33,8 +33,7 @@ export class RecipeListEffects {
       switchMap(() => {
         return this.recipeHttpService.fetchRecipes();
       }),
-      map((recipes) => actionSetFetchedRecipes({ recipes })),
-      repeat()
+      map((recipes) => actionSetFetchedRecipes({ recipes }))
     );
   });
 
@@ -47,8 +46,7 @@ export class RecipeListEffects {
       map((recipe) => {
         this.router.navigateByUrl(`/recipes/${recipe._id}/edit`);
         return actionAddCreatedRecipe({ recipe });
-      }),
-      repeat()
+      })
     );
   });
 
@@ -109,8 +107,7 @@ export class RecipeListEffects {
       tap(() => {
         this.router.navigateByUrl('/recipes');
       }),
-      map((recipeId) => actionSetRemoveRecipe({ recipeId })),
-      repeat()
+      map((recipeId) => actionSetRemoveRecipe({ recipeId }))
     );
   });
 }
