@@ -1,20 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 import { Routes } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RecipesFeatureRecipesListModule } from '@ngrecipes-nx/recipes/feature-recipes-list';
-import {
-  HttpApiInterceptor,
-  HttpErrorInterceptor,
-  RecipeListEffects,
-  recipesReducer,
-  RECIPES_FEATURE_NAME,
-} from '@ngrecipes-nx/recipes/data-access-recipes';
 import { ContainerComponent } from './container/container.component';
+import { RecipesDataAccessRecipesModule } from '@ngrecipes-nx/recipes/data-access-recipes';
 
 export const routes: Routes = [
   {
@@ -51,16 +41,11 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature(RECIPES_FEATURE_NAME, recipesReducer),
-    EffectsModule.forFeature([RecipeListEffects]),
     RecipesFeatureRecipesListModule,
-    MatSnackBarModule,
+    RecipesDataAccessRecipesModule,
   ],
   exports: [RouterModule],
   declarations: [ContainerComponent],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpApiInterceptor, multi: true },
-  ],
+  providers: [],
 })
 export class RecipesFeatureShellModule {}
