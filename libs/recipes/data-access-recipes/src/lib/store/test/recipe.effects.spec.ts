@@ -22,7 +22,7 @@ import {
 import { RecipeListState } from '../recipe.reducer';
 import { selectRecipes } from '../recipe.select';
 
-describe('RecipeListEffects', () => {
+describe('Effect: Recipes', () => {
   let actions$: Observable<unknown>;
   let effects: RecipeListEffects;
   let store: MockStore;
