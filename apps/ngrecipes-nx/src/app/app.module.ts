@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -11,6 +11,11 @@ import { SharedFeatureNavbarModule } from '@ngrecipes-nx/shared/feature-navbar';
 import { SharedFeatureFooterModule } from '@ngrecipes-nx/shared/feature-footer';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import {
+  HttpApiInterceptor,
+  HttpErrorInterceptor,
+} from '@ngrecipes-nx/recipes/data-access-recipes';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,8 +39,12 @@ import { appRoutes } from './app.routes';
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
+    MatSnackBarModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpApiInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
