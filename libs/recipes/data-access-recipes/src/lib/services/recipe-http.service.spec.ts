@@ -26,7 +26,7 @@ describe('RecipeHttpService', () => {
     it('should call http.get with proper recipe endpoint', () => {
       service.fetchRecipes();
       expect(mockHttpClient.get).toBeCalledWith(
-        expect.stringMatching(/https:\/\/crudcrud.com\/api\//)
+        expect.stringMatching(/\/api\/recipes/)
       );
     });
   });
@@ -36,9 +36,7 @@ describe('RecipeHttpService', () => {
     it('should call http.get with specific recipeId', () => {
       service.fetchRecipe(recipeId);
       expect(mockHttpClient.get).toBeCalledWith(
-        expect.stringMatching(
-          new RegExp(`https://crudcrud.com/api/.+/${recipeId}`)
-        )
+        expect.stringMatching(new RegExp(`/api/recipes/${recipeId}`))
       );
     });
   });
@@ -56,7 +54,7 @@ describe('RecipeHttpService', () => {
       service.updateRecipe(recipe);
       const { _id, ...recipeWithStrippedId } = recipe;
       expect(mockHttpClient.put).toBeCalledWith(
-        expect.stringMatching(new RegExp(`https://crudcrud.com/api/.+/${_id}`)),
+        expect.stringMatching(new RegExp(`/api/recipes/${_id}`)),
         recipeWithStrippedId,
         { observe: 'response' }
       );
@@ -74,7 +72,7 @@ describe('RecipeHttpService', () => {
     it('should call http.post with given recipe as body', () => {
       service.createRecipe(recipe);
       expect(mockHttpClient.post).toBeCalledWith(
-        expect.stringMatching(/https:\/\/crudcrud.com\/api\//),
+        expect.stringMatching(/\/api\//),
         recipe
       );
     });
