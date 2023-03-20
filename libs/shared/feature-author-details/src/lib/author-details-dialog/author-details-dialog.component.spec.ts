@@ -1,30 +1,27 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 
 import { AuthorDetailsDialogComponent } from './author-details-dialog.component';
 import { HarnessLoader } from '@angular/cdk/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 describe('AuthorDetailsDialogComponent', () => {
-  let component: AuthorDetailsDialogComponent;
-  let fixture: ComponentFixture<AuthorDetailsDialogComponent>;
+  let spectator: Spectator<AuthorDetailsDialogComponent>;
   let matDialog: MatDialog;
   let loader: HarnessLoader;
   let dialogHarness: MatDialogHarness;
+  const createComponent = createComponentFactory({
+    component: AuthorDetailsDialogComponent,
+    imports: [MatDialogModule],
+  });
 
   beforeEach(waitForAsync(async () => {
-    TestBed.configureTestingModule({
-      imports: [MatDialogModule],
-      declarations: [AuthorDetailsDialogComponent],
-      providers: [MatDialog],
-    }).compileComponents();
+    spectator = createComponent();
 
-    fixture = TestBed.createComponent(AuthorDetailsDialogComponent);
-    loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-    matDialog = TestBed.inject(MatDialog);
+    loader = TestbedHarnessEnvironment.documentRootLoader(spectator.fixture);
+    matDialog = spectator.inject(MatDialog);
     matDialog.open(AuthorDetailsDialogComponent);
     dialogHarness = await loader.getHarness(MatDialogHarness);
   }));

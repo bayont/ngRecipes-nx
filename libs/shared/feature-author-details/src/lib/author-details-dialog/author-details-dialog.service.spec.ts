@@ -1,22 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { MockProvider } from 'ng-mocks';
 
 import { AuthorDetailsDialogService } from './author-details-dialog.service';
 
 describe('AuthorDetailsDialogService', () => {
+  let spectator: SpectatorService<AuthorDetailsDialogService>;
+  const createService = createServiceFactory(AuthorDetailsDialogService);
   let service: AuthorDetailsDialogService;
-  const mockMatDialog = {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    open: () => {},
-  };
   let matDialog: MatDialog;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [{ provide: MatDialog, useValue: mockMatDialog }],
+    spectator = createService({
+      providers: [MockProvider(MatDialog)],
     });
-    service = TestBed.inject(AuthorDetailsDialogService);
+
+    spectator.inject(MatDialog);
     matDialog = TestBed.inject(MatDialog);
+    service = spectator.service;
   });
 
   it('should be created', () => {

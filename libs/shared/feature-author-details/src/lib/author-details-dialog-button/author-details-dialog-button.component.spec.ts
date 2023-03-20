@@ -8,37 +8,29 @@ import { AuthorDetailsDialogButtonComponent } from './author-details-dialog-butt
 import { AuthorDetailsDialogService } from '../author-details-dialog/author-details-dialog.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockProvider } from 'ng-mocks';
 
 describe('AuthorDetailsDialogButtonComponent', () => {
-  let component: AuthorDetailsDialogButtonComponent;
-  let fixture: ComponentFixture<AuthorDetailsDialogButtonComponent>;
+  let spectator: Spectator<AuthorDetailsDialogButtonComponent>;
   let loader: HarnessLoader;
-  const mockAuthorDetailsDialogService = {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    openDialog: () => {},
-  };
   let authorDetailsDialogService: AuthorDetailsDialogService;
+  const createComponent = createComponentFactory({
+    component: AuthorDetailsDialogButtonComponent,
+    imports: [MatIconModule, MatButtonModule],
+  });
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [MatIconModule, MatButtonModule],
-      declarations: [AuthorDetailsDialogButtonComponent],
-      providers: [
-        {
-          provide: AuthorDetailsDialogService,
-          useValue: mockAuthorDetailsDialogService,
-        },
-      ],
-    }).compileComponents();
+    spectator = createComponent({
+      providers: [MockProvider(AuthorDetailsDialogService)],
+    });
 
-    fixture = TestBed.createComponent(AuthorDetailsDialogButtonComponent);
-    component = fixture.componentInstance;
-    loader = TestbedHarnessEnvironment.loader(fixture);
-    authorDetailsDialogService = TestBed.inject(AuthorDetailsDialogService);
+    loader = TestbedHarnessEnvironment.loader(spectator.fixture);
+    authorDetailsDialogService = spectator.inject(AuthorDetailsDialogService);
   }));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 
   it('should open dialog', async () => {
