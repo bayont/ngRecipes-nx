@@ -9,7 +9,7 @@ pipelines:
             - node
           script:
             - npm ci
-            - npx nx affected --target=test --base=main --parallel
+            - npx nx affected --target=test --parallel
 
  default:
     - parallel:
