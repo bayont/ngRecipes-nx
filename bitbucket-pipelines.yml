@@ -6,6 +6,16 @@
 image: node:16
 
 pipelines:
+ pull-requests:
+    '**':
+      - step:
+          name: 'Build and test affected apps on Pull Requests'
+          caches:
+            - node
+          script:
+            - npm ci
+            - npx nx affected --target=test --base=main --parallel --configuration=ci
+
   default:
     - parallel:
         - step:
@@ -14,11 +24,5 @@ pipelines:
               - node
             script:
               - npm install
-              - npx nx run-many --all --target=test --parallel
-        - step:
-            name: Code linting
-            script:
-              - npm install
-              - npx nx run-many --all --target=lint --parallel
-            caches:
-              - node
+              - npx nx affected --target=test --parallel
+
