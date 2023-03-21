@@ -27,4 +27,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npx nx affected --target=test --base=origin/main --parallel
+    - run: npx nx run-many --all --target=test --base=origin/main --parallel
