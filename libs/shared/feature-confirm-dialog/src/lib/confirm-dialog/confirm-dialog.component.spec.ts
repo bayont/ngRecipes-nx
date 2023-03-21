@@ -1,75 +1,54 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {
   MatDialog,
   MatDialogModule,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
+import { mockProvider, createComponentFactory } from '@ngneat/spectator/jest';
+import { MockPipe } from 'ng-mocks';
 
+import { TextStylePipe } from '@ngrecipes-nx/shared/util-text-style';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
-import { Pipe, PipeTransform } from '@angular/core';
-
-@Pipe({
-  name: 'textStyle',
-  standalone: true,
-})
-class MockTextStylePipe implements PipeTransform {
-  transform(value: any, ...args: any[]) {
-    return value;
-  }
-}
 
 describe('ConfirmDialogComponent', () => {
-  let component: ConfirmDialogComponent;
-  let fixture: ComponentFixture<ConfirmDialogComponent>;
-  let loader: HarnessLoader;
-  let data: { title: string; message: string };
-  let matDialogRef: MatDialogRef<ConfirmDialogComponent>;
-  let matDialog: MatDialog;
-  const mockMatDialogRef = {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-    close: (result: boolean) => {},
-  };
-  const matDialogDataFixture = {
-    title: 'Test title',
-    message: 'Test *content*',
-  };
+  const createComponent = createComponentFactory({
+    component: ConfirmDialogComponent,
+    imports: [MockPipe(TextStylePipe, (value) => value), MatDialogModule],
+  });
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [MockTextStylePipe, MatDialogModule],
-      declarations: [ConfirmDialogComponent],
+  const testSetup = (options?: { title?: string; message?: string }) => {
+    const spectator = createComponent({
       providers: [
-        MatDialog,
-        {
-          provide: MatDialogRef<ConfirmDialogComponent>,
-          useValue: mockMatDialogRef,
-        },
+        mockProvider(MatDialogRef),
         {
           provide: MAT_DIALOG_DATA,
-          useValue: matDialogDataFixture,
+          useValue: {
+            title: options?.title || 'Test title',
+            message: options?.message || 'Test *content*',
+          },
         },
       ],
-    }).compileComponents();
-
-    data = TestBed.inject(MAT_DIALOG_DATA);
-    matDialogRef = TestBed.inject(MatDialogRef);
-    matDialog = TestBed.inject(MatDialog);
-    fixture = TestBed.createComponent(ConfirmDialogComponent);
-    component = fixture.componentInstance;
-    loader = TestbedHarnessEnvironment.documentRootLoader(fixture);
-    fixture.detectChanges();
-  }));
+    });
+    const data = spectator.inject(MAT_DIALOG_DATA);
+    const matDialogRef = spectator.inject(MatDialogRef);
+    const matDialog = spectator.inject(MatDialog);
+    const component = spectator.component;
+    const loader = TestbedHarnessEnvironment.documentRootLoader(
+      spectator.fixture
+    );
+    return { spectator, component, loader, data, matDialogRef, matDialog };
+  };
 
   it('should create', () => {
+    const { component } = testSetup();
     expect(component).toBeTruthy();
   });
 
   it('should close dialog and return true by clicking Yes button', async () => {
+    const { component, loader, matDialogRef } = testSetup();
     jest.spyOn(component, 'onYes');
     jest.spyOn(matDialogRef, 'close');
     const buttonYes = await loader.getHarness(
@@ -81,6 +60,7 @@ describe('ConfirmDialogComponent', () => {
   });
 
   it('should close dialog and return false by clicking No button', async () => {
+    const { component, loader, matDialogRef } = testSetup();
     jest.spyOn(component, 'onNo');
     jest.spyOn(matDialogRef, 'close');
     const buttonNo = await loader.getHarness(
@@ -92,18 +72,21 @@ describe('ConfirmDialogComponent', () => {
   });
 
   it('should display proper title', async () => {
+    const { component, loader, data, matDialog } = testSetup();
     matDialog.open(ConfirmDialogComponent, { data });
     const dialog = await loader.getHarness(MatDialogHarness);
     expect(await dialog.getTitleText()).toBe(component.data.title);
   });
 
   it('should display proper content message', async () => {
+    const { component, loader, data, matDialog } = testSetup();
     matDialog.open(ConfirmDialogComponent, { data });
     const dialog = await loader.getHarness(MatDialogHarness);
     expect(await dialog.getContentText()).toBe(component.data.message);
   });
 
   it('should display proper action buttons messages', async () => {
+    const { loader, data, matDialog } = testSetup();
     matDialog.open(ConfirmDialogComponent, { data });
     const dialog = await loader.getHarness(MatDialogHarness);
     expect(await dialog.getActionsText()).toBe('Yes No');
