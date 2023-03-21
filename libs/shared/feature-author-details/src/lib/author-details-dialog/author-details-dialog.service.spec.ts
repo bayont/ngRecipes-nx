@@ -1,29 +1,29 @@
-import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
+import { createServiceFactory } from '@ngneat/spectator';
+import { mockProvider } from '@ngneat/spectator/jest';
 
 import { AuthorDetailsDialogService } from './author-details-dialog.service';
 
 describe('AuthorDetailsDialogService', () => {
-  let service: AuthorDetailsDialogService;
-  const mockMatDialog = {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    open: () => {},
-  };
-  let matDialog: MatDialog;
+  const createService = createServiceFactory(AuthorDetailsDialogService);
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [{ provide: MatDialog, useValue: mockMatDialog }],
+  const testSetup = () => {
+    const spectator = createService({
+      providers: [mockProvider(MatDialog)],
     });
-    service = TestBed.inject(AuthorDetailsDialogService);
-    matDialog = TestBed.inject(MatDialog);
-  });
+    const service = spectator.service;
+    const matDialog = spectator.inject(MatDialog);
+
+    return { spectator, service, matDialog };
+  };
 
   it('should be created', () => {
+    const { service } = testSetup();
     expect(service).toBeTruthy();
   });
 
   it('should open the dialog', () => {
+    const { service, matDialog } = testSetup();
     jest.spyOn(matDialog, 'open');
     service.openDialog();
     expect(matDialog.open).toHaveBeenCalled();

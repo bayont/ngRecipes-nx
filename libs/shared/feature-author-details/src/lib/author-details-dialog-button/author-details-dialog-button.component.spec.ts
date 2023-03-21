@@ -1,6 +1,3 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { MatDialog } from '@angular/material/dialog';
-import { HarnessLoader } from '@angular/cdk/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 
@@ -8,40 +5,35 @@ import { AuthorDetailsDialogButtonComponent } from './author-details-dialog-butt
 import { AuthorDetailsDialogService } from '../author-details-dialog/author-details-dialog.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { createComponentFactory } from '@ngneat/spectator';
+import { mockProvider } from '@ngneat/spectator/jest';
 
 describe('AuthorDetailsDialogButtonComponent', () => {
-  let component: AuthorDetailsDialogButtonComponent;
-  let fixture: ComponentFixture<AuthorDetailsDialogButtonComponent>;
-  let loader: HarnessLoader;
-  const mockAuthorDetailsDialogService = {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    openDialog: () => {},
+  const createComponent = createComponentFactory({
+    component: AuthorDetailsDialogButtonComponent,
+    imports: [MatIconModule, MatButtonModule],
+  });
+
+  const testSetup = () => {
+    const spectator = createComponent({
+      providers: [mockProvider(AuthorDetailsDialogService)],
+    });
+    const component = spectator.component;
+    const loader = TestbedHarnessEnvironment.loader(spectator.fixture);
+    const authorDetailsDialogService = spectator.inject(
+      AuthorDetailsDialogService
+    );
+
+    return { spectator, component, loader, authorDetailsDialogService };
   };
-  let authorDetailsDialogService: AuthorDetailsDialogService;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [MatIconModule, MatButtonModule],
-      declarations: [AuthorDetailsDialogButtonComponent],
-      providers: [
-        {
-          provide: AuthorDetailsDialogService,
-          useValue: mockAuthorDetailsDialogService,
-        },
-      ],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(AuthorDetailsDialogButtonComponent);
-    component = fixture.componentInstance;
-    loader = TestbedHarnessEnvironment.loader(fixture);
-    authorDetailsDialogService = TestBed.inject(AuthorDetailsDialogService);
-  }));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const { spectator } = testSetup();
+    expect(spectator.component).toBeTruthy();
   });
 
   it('should open dialog', async () => {
+    const { loader, authorDetailsDialogService } = testSetup();
     jest.spyOn(authorDetailsDialogService, 'openDialog');
     const button = await loader.getHarness(MatButtonHarness);
     await button.click();

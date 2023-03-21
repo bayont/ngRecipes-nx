@@ -1,0 +1,28 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: node:16
+
+pipelines:
+ pull-requests:
+    '**':
+      - step:
+          name: 'Build and test affected apps on Pull Requests'
+          caches:
+            - node
+          script:
+            - npm ci
+            - npx nx affected --target=test --base=main --parallel --configuration=ci
+
+  default:
+    - parallel:
+        - step:
+            name: Build and Test
+            caches:
+              - node
+            script:
+              - npm install
+              - npx nx affected --target=test --parallel
+
