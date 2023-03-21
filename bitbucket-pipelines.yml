@@ -14,11 +14,11 @@ pipelines:
               - node
             script:
               - npm install
-              - npm test
+              - npx nx run-many --all --target=test --parallel
         - step:
             name: Code linting
             script:
-              - npm install eslint
-              - npx eslint .
+              - npm install
+              - npx nx run-many --all --target=lint --parallel
             caches:
               - node
