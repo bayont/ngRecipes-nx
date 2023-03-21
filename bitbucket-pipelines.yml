@@ -9,7 +9,7 @@ pipelines:
             - node
           script:
             - npm ci
-            - npx nx affected --target=test --base=bitbucket/main --parallel
+            - npx nx affected --target=test --base=origin/main --parallel
 
  default:
     - parallel:
@@ -19,5 +19,5 @@ pipelines:
               - node
             script:
               - npm install
-              - npx nx affected --target=test  --base=bitbucket/main --parallel
+              - npx nx affected --target=test  --base=origin/main --parallel
 
