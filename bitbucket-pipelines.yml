@@ -10,14 +10,3 @@ pipelines:
           script:
             - npm ci
             - npx nx affected --target=test --base=origin/main --parallel
-
- default:
-    - parallel:
-        - step:
-            name: Build and Test
-            caches:
-              - node
-            script:
-              - npm install
-              - npx nx affected --target=test  --base=origin/main --parallel
-
