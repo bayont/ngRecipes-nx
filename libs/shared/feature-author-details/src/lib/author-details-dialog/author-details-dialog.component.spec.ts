@@ -8,29 +8,32 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 describe('AuthorDetailsDialogComponent', () => {
-  let spectator: Spectator<AuthorDetailsDialogComponent>;
-  let matDialog: MatDialog;
-  let loader: HarnessLoader;
-  let dialogHarness: MatDialogHarness;
+  const testSetup = () => {
+    const spectator = createComponent();
+    const component = spectator.component;
+    const loader = TestbedHarnessEnvironment.documentRootLoader(
+      spectator.fixture
+    );
+    const matDialog = spectator.inject(MatDialog);
+    matDialog.open(AuthorDetailsDialogComponent);
+
+    return { spectator, component, loader, matDialog };
+  };
+
   const createComponent = createComponentFactory({
     component: AuthorDetailsDialogComponent,
     imports: [MatDialogModule],
   });
 
-  beforeEach(waitForAsync(async () => {
-    spectator = createComponent();
-
-    loader = TestbedHarnessEnvironment.documentRootLoader(spectator.fixture);
-    matDialog = spectator.inject(MatDialog);
-    matDialog.open(AuthorDetailsDialogComponent);
-    dialogHarness = await loader.getHarness(MatDialogHarness);
-  }));
-
   it('should have proper title', async () => {
+    const { loader } = testSetup();
+    const dialogHarness = await loader.getHarness(MatDialogHarness);
     expect(await dialogHarness.getTitleText()).toBe('Author details');
   });
 
   it('should have proper action button', async () => {
+    const { loader } = testSetup();
+    const dialogHarness = await loader.getHarness(MatDialogHarness);
     expect(await dialogHarness.getActionsText()).toBe('Dismiss');
   });
 });

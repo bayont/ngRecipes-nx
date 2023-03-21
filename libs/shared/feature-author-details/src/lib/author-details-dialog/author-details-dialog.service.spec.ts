@@ -6,26 +6,25 @@ import { MockProvider } from 'ng-mocks';
 import { AuthorDetailsDialogService } from './author-details-dialog.service';
 
 describe('AuthorDetailsDialogService', () => {
-  let spectator: SpectatorService<AuthorDetailsDialogService>;
   const createService = createServiceFactory(AuthorDetailsDialogService);
-  let service: AuthorDetailsDialogService;
-  let matDialog: MatDialog;
 
-  beforeEach(() => {
-    spectator = createService({
+  const testSetup = () => {
+    const spectator = createService({
       providers: [MockProvider(MatDialog)],
     });
+    const service = spectator.service;
+    const matDialog = spectator.inject(MatDialog);
 
-    spectator.inject(MatDialog);
-    matDialog = TestBed.inject(MatDialog);
-    service = spectator.service;
-  });
+    return { spectator, service, matDialog };
+  };
 
   it('should be created', () => {
+    const { service } = testSetup();
     expect(service).toBeTruthy();
   });
 
   it('should open the dialog', () => {
+    const { service, matDialog } = testSetup();
     jest.spyOn(matDialog, 'open');
     service.openDialog();
     expect(matDialog.open).toHaveBeenCalled();
