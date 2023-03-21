@@ -1,7 +1,6 @@
-import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
-import { MockProvider } from 'ng-mocks';
+import { createServiceFactory } from '@ngneat/spectator';
+import { mockProvider } from '@ngneat/spectator/jest';
 
 import { AuthorDetailsDialogService } from './author-details-dialog.service';
 
@@ -10,7 +9,7 @@ describe('AuthorDetailsDialogService', () => {
 
   const testSetup = () => {
     const spectator = createService({
-      providers: [MockProvider(MatDialog)],
+      providers: [mockProvider(MatDialog)],
     });
     const service = spectator.service;
     const matDialog = spectator.inject(MatDialog);

@@ -6,7 +6,7 @@ import { AuthorDetailsDialogService } from '../author-details-dialog/author-deta
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { createComponentFactory } from '@ngneat/spectator';
-import { MockProvider } from 'ng-mocks';
+import { mockProvider } from '@ngneat/spectator/jest';
 
 describe('AuthorDetailsDialogButtonComponent', () => {
   const createComponent = createComponentFactory({
@@ -16,7 +16,7 @@ describe('AuthorDetailsDialogButtonComponent', () => {
 
   const testSetup = () => {
     const spectator = createComponent({
-      providers: [MockProvider(AuthorDetailsDialogService)],
+      providers: [mockProvider(AuthorDetailsDialogService)],
     });
     const component = spectator.component;
     const loader = TestbedHarnessEnvironment.loader(spectator.fixture);

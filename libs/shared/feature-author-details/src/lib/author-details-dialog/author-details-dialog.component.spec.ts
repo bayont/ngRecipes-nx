@@ -1,11 +1,9 @@
-import { waitForAsync } from '@angular/core/testing';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogHarness } from '@angular/material/dialog/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 
 import { AuthorDetailsDialogComponent } from './author-details-dialog.component';
-import { HarnessLoader } from '@angular/cdk/testing';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { createComponentFactory } from '@ngneat/spectator';
 
 describe('AuthorDetailsDialogComponent', () => {
   const testSetup = () => {
