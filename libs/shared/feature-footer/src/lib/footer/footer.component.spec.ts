@@ -1,4 +1,3 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedFeatureAuthorDetailsModule } from '@ngrecipes-nx/shared/feature-author-details';
 
@@ -13,8 +12,7 @@ describe('FooterComponent', () => {
   const testSetup = () => {
     const spectator = createComponent();
     const component = spectator.component;
-    const fixture = spectator.fixture;
-    return { component, fixture, spectator };
+    return { component };
   };
   it('should create', () => {
     const { component } = testSetup();
