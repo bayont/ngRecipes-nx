@@ -1,4 +1,3 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedFeatureAuthorDetailsModule } from '@ngrecipes-nx/shared/feature-author-details';
 import { createComponentFactory } from '@ngneat/spectator/jest';
