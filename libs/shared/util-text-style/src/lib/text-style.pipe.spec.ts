@@ -7,7 +7,6 @@ describe('TextStylePipe', () => {
   const testSetup = (template: string) => {
     const spectator = createPipe(template, {
       providers: [
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         mockProvider(DomSanitizer, {
           bypassSecurityTrustHtml: jest.fn((value) => value),
         }),
