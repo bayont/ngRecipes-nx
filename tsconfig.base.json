@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "types": ["node"],
     "paths": {
+      "@ngrecipes-nx/helpers": ["helpers"],
       "@ngrecipes-nx/recipes/data-access-recipes": [
         "libs/recipes/data-access-recipes/src/index.ts"
       ],
